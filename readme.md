@@ -100,6 +100,8 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 1. **psycopg instead of SQLAlchemy**: Lightweight and direct interaction with PostgreSQL without the overhead of an ORM. Perfect for understanding raw SQL operations as well as scope of the project.
 2. **sentence-transformers**: Lightweight as Compared to other embedding models, 384-d vector embedding is sufficient for semantic similarity without burning a lot of compute resources.
 3. **tool calling**: Gemini calls the readfile tool which accepts a list of queries, and similar chunks are retrieved based upon cosine similarity of query and chunk embeddings. this way, the system can handle ambiguity and provide a more accurate response.
+4. **Chunking Strategy**: After experimenting with various chunk sizes and overlaps, I settled on a 2000-char chunks with 200-char overlap for optimal context retention and analysis.
+5. **File validation:** Strict content_type/extension checks (PDF/TXT/MD) before processing.
 
 ## RAG Pipeline
 
