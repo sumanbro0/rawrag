@@ -1,4 +1,4 @@
-# Project Title
+# RawRAG: A Retrieval-Augmented Generation System
 
 This project is a web application that implements a Retrieval-Augmented Generation (RAG) system using Python, FastAPI, Next.js, and TypeScript. It integrates with Google GenAI for generative AI capabilities and uses PostgreSQL for data storage along with pgvector extension for vector data.
 
