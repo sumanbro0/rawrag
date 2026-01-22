@@ -12,6 +12,8 @@ def get_embedding_model():
     global _model
     if not _model:
         _model=SentenceTransformer("all-MiniLM-L6-v2")
+        # If needed to process languages other than english.
+        # _model=SentenceTransformer("paraphrase-multilingual-MiniLM-L12-v2")
     return _model
 
 UPLOAD_DIR=Path("files")
@@ -26,7 +28,6 @@ def save_and_extract(file:UploadFile,chat_id:UUID):
     try:
 
         content=file.file.read()
-        print(content)
         with open(file_path,"wb") as f:
             f.write(content)
 

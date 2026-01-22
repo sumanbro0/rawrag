@@ -156,6 +156,7 @@ async def talk_to_gemini(
 
         <CRITICAL>
         - ONLY REPLY AS A PLAIN TEXT, DO NOT USE MARKDOWN FORMATTING.
+        - Your response should be strictly grounded to the provided files. Do not use external information or sources.
         </CRITICAL>
 
         """
