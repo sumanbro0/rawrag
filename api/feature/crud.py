@@ -144,7 +144,11 @@ def make_read_files_tool(chat_id:UUID):
 async def talk_to_gemini(
     chat_id:UUID,
     new_question:str,
+    db:AsyncSession,
 ):
+    all_messages=await get_all_messages(chat_id,db)
+
+    
     config=types.GenerateContentConfig(
         tools=[make_read_files_tool(chat_id)],
         system_instruction=""""
@@ -156,17 +160,25 @@ async def talk_to_gemini(
 
         <CRITICAL>
         - ONLY REPLY AS A PLAIN TEXT, DO NOT USE MARKDOWN FORMATTING.
+        - For every question, you should strictly answer from the provided files only.
         - Your response should be strictly grounded to the provided files. Do not use external information or sources.
         </CRITICAL>
 
         """
     )
-  
-    contents=types.Content(
+    contents = []
+    for message in all_messages:
+        role = Role.USER if message.get("role") == "user" else "model"
+        contents.append(types.Content(
+            role=role,
+            parts=[types.Part(text=message.get("content"))]
+        ))
+
+    contents.append(types.Content(
             role=Role.USER,
-            parts=[types.Part(text=new_question 
-            )],
+            parts=[types.Part(text=new_question)]
         )
+    )
     
     try:
         response = client.models.generate_content(

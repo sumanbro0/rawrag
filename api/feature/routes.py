@@ -105,7 +105,7 @@ async def message(
     user_question=content 
     if file:
         user_question=content + " \n\n New File Uploaded:" + str(file.filename)
-    reply=await talk_to_gemini(chat_id,user_question)
+    reply=await talk_to_gemini(chat_id,user_question,db)
 
     if not reply:
         return JSONResponse(status_code=400,content=BaseResponseSchema(message="Gemini failed to reply",success=False).model_dump())
