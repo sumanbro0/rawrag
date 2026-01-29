@@ -128,3 +128,5 @@ The database schema Can be found in the `api/migration.py` file. It includes tab
 3. `rawdoc`: Stores the raw document data along with the embeddings and the index of the chunk.
 
 Note: Output schemas can be found in the `api/feature/schemas.py` file.
+
+P.S. It currently doesn't handle images inside pdfs...
